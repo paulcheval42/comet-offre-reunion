@@ -1,0 +1,237 @@
+/* ============================================================
+   COMET — Page use case « Réunion »
+   Modules additionnels, par-dessus coeur-defense.css (DNA Étoile v2).
+   Réutilise les mêmes tokens (--navy, --yellow, --cream…).
+   Échelle réseau : on raconte l'expérience d'une réunion réussie
+   chez Comet, où que ce soit — jamais un lieu précis.
+
+   Polish : principes Emil Kowalski (design engineering).
+   Ce fichier n'est chargé que par Réunion.html — les règles
+   globales ci-dessous ne touchent donc pas les autres pages.
+   ============================================================ */
+
+/* ---------- Polish global (Emil) ---------- */
+/* Pas de double-tap zoom sur les contrôles tactiles */
+a,button,summary,.btn,input{touch-action:manipulation}
+/* Le header collant (72px) ne doit pas masquer les ancres ciblées */
+[id]{scroll-margin-top:88px}
+/* Les couches décoratives ne capturent pas le clic */
+.vhero__scrim,.finale__bg,.finale__scrim{pointer-events:none}
+/* Chiffres alignés, jamais de saut de chasse */
+.vhero__proof b,.vtcard__pax,.xcard__step .n,.kitcard__n{font-variant-numeric:tabular-nums}
+/* Safe-area pour la barre CTA mobile (home indicator) */
+.mcta{padding-bottom:calc(12px + env(safe-area-inset-bottom))}
+/* Cibles tactiles \u2265 44px sur \u00e9crans tactiles (sans alourdir le desktop) */
+@media (pointer:coarse){.btn--sm{min-height:44px}.mhead .mburger{width:44px;height:44px}}
+
+/* ---------- Hero : voile dégradé pour le contraste du texte ----------
+   Concentré en bas-gauche (là où vivent le titre + les CTA), transparent
+   en haut-droite pour laisser voir le lieu. Remplace le scrim partagé,
+   uniquement sur cette page (reunion.css n'est chargé qu'ici). */
+.vhero__scrim{
+  background:
+    linear-gradient(to top, rgba(15,39,48,.88) 0%, rgba(15,39,48,.6) 20%, rgba(15,39,48,.18) 44%, rgba(15,39,48,0) 68%),
+    linear-gradient(to right, rgba(15,39,48,.6) 0%, rgba(15,39,48,.2) 34%, rgba(15,39,48,0) 60%);
+}
+
+/* ---------- Hero : H1 use case (vs phrase lieu) ---------- */
+.vhero__panel--uc{bottom:84px}
+.vhero__panel--uc .vhero__panelinner{max-width:40em}
+.vhero h1.vhero__uc-h1{font-size:clamp(30px,3.9vw,52px);line-height:1.05;color:#fff;letter-spacing:-.03em;font-weight:800;text-shadow:0 2px 30px rgba(15,39,48,.4);max-width:none}
+.vhero h1.vhero__uc-h1 .acc{color:var(--yellow);display:inline}
+.vhero__uc-sub{font-size:clamp(15.5px,1.4vw,19px);font-weight:300;line-height:1.5;color:#fff;max-width:33em;margin-top:18px;text-shadow:0 1px 16px rgba(15,39,48,.5)}
+.vhero__uc-sub b{font-weight:600}
+.vhero__panel--uc .vhero__cta{margin-top:26px;align-items:center}
+.vhero__proof{display:inline-flex;align-items:center;gap:12px;margin-top:24px;color:#fff;font-size:13.5px;font-weight:500;text-shadow:0 1px 12px rgba(15,39,48,.5)}
+.vhero__proof b{font-weight:700;color:var(--yellow)}
+.vhero__proof .dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.5)}
+.vhero__proof .gbadge{display:inline-flex;align-items:center;gap:6px}
+.vhero__proof .gbadge svg{display:block;border-radius:2px}
+@media(max-width:560px){.vhero__panel--uc{bottom:88px}}
+
+/* ---------- Bandeau logos ---------- */
+.logostrip{background:var(--cream-soft);border-bottom:1px solid var(--rule)}
+.logostrip .wrap{padding:30px 40px;display:flex;align-items:center;gap:34px;flex-wrap:wrap;justify-content:center}
+.logostrip__lead{font-size:12.5px;font-weight:600;letter-spacing:.04em;color:var(--fg-3);flex:none}
+.logostrip__logos{display:flex;align-items:center;gap:14px 40px;flex-wrap:wrap;justify-content:center}
+.logostrip__logos span{font-size:17px;font-weight:800;letter-spacing:.04em;color:var(--navy);opacity:.5;transition:opacity .2s}
+@media (hover:hover) and (pointer:fine){.logostrip__logos span:hover{opacity:.85}}
+@media(max-width:560px){.logostrip .wrap{padding:24px 18px;gap:18px}.logostrip__logos span{font-size:14px}}
+
+/* ---------- Proposition de valeur développée (le pitch) ---------- */
+.vprop{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.vprop__lead .eyebrow{margin-bottom:18px}
+.vprop__lead h2{font-size:clamp(30px,3.8vw,50px);line-height:1.04;margin-bottom:24px}
+.vprop__lead p{font-size:clamp(17px,1.45vw,19px);color:var(--fg-2);line-height:1.62;margin-bottom:16px}
+.vprop__lead p .em{font-family:var(--serif);font-style:italic;font-weight:900;color:var(--navy)}
+.vprop__pillars{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.vpill{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r-lg);padding:26px 24px;transition:transform .2s var(--ease),box-shadow .2s,border-color .2s}
+@media (hover:hover) and (pointer:fine){.vpill:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:rgba(245,172,60,.5)}}
+.vpill__ico{width:48px;height:48px;border-radius:var(--r-md);background:var(--cream);display:flex;align-items:center;justify-content:center;color:var(--yellow-deep);margin-bottom:16px}
+.vpill__ico svg{width:24px;height:24px}
+.vpill h3{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:7px;letter-spacing:-.01em}
+.vpill p{font-size:14px;color:var(--fg-2);line-height:1.55}
+@media(max-width:980px){.vprop{grid-template-columns:1fr;gap:40px}}
+@media(max-width:480px){.vprop__pillars{grid-template-columns:1fr}}
+
+/* ---------- Parcours d'une journée : pas (step) sur les xcards ---------- */
+.xcard__step{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow-deep);margin-bottom:9px}
+.xcard__step .n{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--cream);font-size:11px;font-variant-numeric:tabular-nums}
+
+/* ---------- Le clé-en-main : BENTO MOSAÏQUE ----------
+   Rupture voulue avec les grilles/carrousels du reste de la page :
+   une mosaïque asymétrique, dense, qui se lit d'un coup d'œil.
+   1 grande tuile photo ancre la compo, mêlée de tuiles plates
+   (navy / crème / accent) et de petites tuiles photo. Chaque tuile
+   porte une puce « Inclus » pour marteler le tout-compris. */
+.bento{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:168px;gap:14px}
+.btile{position:relative;border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;isolation:isolate;box-shadow:var(--shadow-sm)}
+.btile--lg{grid-column:span 2;grid-row:span 2}
+.btile__chip{position:absolute;top:14px;right:14px;z-index:3;display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:.04em;padding:5px 10px;border-radius:var(--r-pill);background:rgba(245,172,60,.16);color:var(--yellow-deep);border:1px solid rgba(245,172,60,.4)}
+.btile__chip svg{width:12px;height:12px}
+.btile__chip--opt{background:rgba(15,39,48,.06);color:var(--fg-3);border-color:var(--rule)}
+.btile__ico{width:42px;height:42px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;margin-bottom:auto}
+.btile__ico svg{width:22px;height:22px}
+.btile h3{font-size:17px;font-weight:700;letter-spacing:-.01em;line-height:1.15}
+.btile--lg h3{font-size:clamp(22px,2.2vw,28px)}
+.btile p{font-size:13px;line-height:1.45;margin-top:6px}
+/* Tuiles photo */
+.btile--photo{color:#fff}
+.btile--photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .8s var(--ease)}
+.btile--photo::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,39,48,0) 38%,rgba(15,39,48,.85))}
+@media (hover:hover) and (pointer:fine){.btile--photo:hover img{transform:scale(1.06)}}
+.btile--photo h3{text-shadow:0 1px 12px rgba(15,39,48,.5)}
+.btile--photo p{color:rgba(255,255,255,.82)}
+.btile__chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.btile__chips span{font-size:11.5px;font-weight:600;color:#fff;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:var(--r-pill);padding:4px 10px}
+/* Tuiles plates */
+.btile--navy{background:var(--navy);color:#fff}
+.btile--navy .btile__ico{background:rgba(245,172,60,.18);color:var(--yellow)}
+.btile--navy p{color:rgba(255,255,255,.72)}
+.btile--cream{background:var(--surface);border:1px solid var(--rule);color:var(--navy)}
+.btile--cream .btile__ico{background:var(--cream);color:var(--yellow-deep)}
+.btile--cream p{color:var(--fg-2)}
+.btile--accent{background:linear-gradient(150deg,var(--yellow) 0%,var(--yellow-deep) 100%);color:var(--navy-ink)}
+.btile--accent .btile__ico{background:rgba(15,39,48,.1);color:var(--navy-ink)}
+.btile--accent .btile__chip--opt{background:rgba(15,39,48,.14);color:var(--navy-ink);border-color:rgba(15,39,48,.18)}
+.btile--accent p{color:rgba(15,39,48,.72)}
+@media (hover:hover) and (pointer:fine){.btile--navy,.btile--cream,.btile--accent{transition:transform .2s var(--ease),box-shadow .2s}.btile--navy:hover,.btile--cream:hover,.btile--accent:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}}
+@media(max-width:820px){.bento{grid-template-columns:1fr 1fr;grid-auto-rows:158px}.btile--lg{grid-column:span 2;grid-row:span 1;min-height:230px}}
+@media(max-width:440px){.bento{grid-auto-rows:140px}}
+
+/* ---------- Le clé-en-main : SPLIT STICKY-SCROLL (variante) ----------
+   Colonne gauche épinglée, colonne droite qui défile carte par carte.
+   Pensé pour l'effet « beau au scroll », plus immersif que la mosaïque. */
+.ksplit{display:grid;grid-template-columns:0.86fr 1.14fr;gap:56px;align-items:start}
+.ksplit__aside{position:sticky;top:104px;align-self:start}
+.ksplit__aside h2{font-size:clamp(30px,3.6vw,46px);line-height:1.02;letter-spacing:-.025em;color:var(--navy);margin:6px 0 18px}
+.ksplit__aside .lede{font-size:17px;color:var(--fg-2);line-height:1.6;max-width:26em;margin-bottom:26px}
+.ksplit__count{display:flex;align-items:baseline;gap:10px;margin-bottom:24px}
+.ksplit__count b{font-size:40px;font-weight:800;color:var(--yellow-deep);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.ksplit__count span{font-size:14px;color:var(--fg-3);max-width:12em;line-height:1.35}
+.ksplit__list{display:flex;flex-direction:column;gap:22px}
+.kcard{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-sm)}
+.kcard__img{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--cream-deep)}
+.kcard__img img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+@media (hover:hover) and (pointer:fine){.kcard:hover .kcard__img img{transform:scale(1.05)}}
+.kcard__chip{position:absolute;top:14px;left:14px;z-index:2;display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:6px 11px;border-radius:var(--r-pill);background:rgba(15,39,48,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff}
+.kcard__chip svg{width:12px;height:12px;color:var(--yellow)}
+.kcard__chip--opt{background:rgba(15,39,48,.42)}
+.kcard__body{padding:22px 28px 26px;display:flex;align-items:flex-start;gap:18px}
+.kcard__num{flex:none;font-size:14px;font-weight:700;color:var(--yellow-deep);font-variant-numeric:tabular-nums;padding-top:3px;min-width:28px}
+.kcard__txt h3{font-size:20px;font-weight:700;color:var(--navy);letter-spacing:-.01em;margin-bottom:6px}
+.kcard__txt p{font-size:14.5px;color:var(--fg-2);line-height:1.55}
+.kcard__txt .meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
+.kcard__txt .meta span{font-size:12px;font-weight:500;color:var(--navy);background:var(--cream);border:1px solid var(--rule);border-radius:var(--r-pill);padding:5px 11px}
+@media(max-width:880px){.ksplit{grid-template-columns:1fr;gap:32px}.ksplit__aside{position:static;top:auto}.ksplit__aside .lede{max-width:38em}}
+@media(max-width:520px){.kcard__body{padding:20px 20px 22px;gap:12px}}
+
+/* CTA final : paragraphe de rappel sur la bande navy (.ctaband) */
+.ctaband__lede{max-width:40em;margin:0 auto 28px;color:rgba(255,255,255,.78);font-size:clamp(15px,1.4vw,18px);line-height:1.55}
+
+/* ---------- Sans Comet / Avec Comet ⭐ ---------- */
+.versus{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.vcol{border-radius:var(--r-xl);overflow:hidden;display:flex;flex-direction:column}
+.vcol--without{background:#e9e4dc;color:#6c6155}
+.vcol--with{background:var(--navy);color:var(--on-navy);box-shadow:var(--shadow-lg);position:relative}
+.vcol__head{padding:30px 34px 24px;display:flex;align-items:center;gap:14px;border-bottom:1px solid}
+.vcol--without .vcol__head{border-color:rgba(108,97,85,.2)}
+.vcol--with .vcol__head{border-color:var(--on-navy-rule)}
+.vcol__tag{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.vcol--without .vcol__tag{color:#8a7e6f}
+.vcol--with .vcol__tag{color:var(--yellow)}
+.vcol__head h3{font-size:clamp(22px,2.4vw,30px);line-height:1.05;letter-spacing:-.02em}
+.vcol--without .vcol__head h3{color:#5a5046}
+.vcol--with .vcol__head h3{color:#fff}
+.vcol__list{list-style:none;margin:0;padding:14px 34px 32px;display:flex;flex-direction:column;flex:1}
+.vcol__list li{display:flex;gap:14px;align-items:flex-start;padding:16px 0;font-size:15.5px;line-height:1.5}
+.vcol__list li+li{border-top:1px solid}
+.vcol--without .vcol__list li+li{border-color:rgba(108,97,85,.16)}
+.vcol--with .vcol__list li+li{border-color:var(--on-navy-rule)}
+.vcol__ic{flex:none;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.vcol--without .vcol__ic{background:rgba(108,97,85,.16);color:#8a7e6f}
+.vcol--with .vcol__ic{background:rgba(245,172,60,.18);color:var(--yellow)}
+.vcol__ic svg{width:14px;height:14px}
+.vcol--without .vcol__list li{color:#6c6155}
+.vcol--with .vcol__list li{color:var(--on-navy)}
+.vcol--with .vcol__list li b{color:#fff;font-weight:600}
+.vcol__foot{margin-top:auto;padding:0 34px 32px}
+.vcol--with .vcol__foot .btn{width:100%}
+@media(max-width:820px){.versus{grid-template-columns:1fr}.vcol--without{order:2}}
+
+/* ---------- Les formats de réunion (sous-use-cases) ---------- */
+/* Style aligné sur les cartes use-case de la page Lieu (.gtile) :
+   un seul titre en bas-gauche, voile noir un peu plus sombre. */
+.formats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.fcard{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--navy-ink);box-shadow:var(--shadow-md);min-height:260px;display:flex;align-items:flex-end;text-decoration:none;isolation:isolate}
+.fcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .8s var(--ease)}
+.fcard::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,39,48,0) 38%,rgba(15,39,48,.86))}
+@media (hover:hover) and (pointer:fine){.fcard:hover img{transform:scale(1.06)}}
+.fcard__body{padding:0 20px 18px;color:#fff;width:100%}
+.fcard__body h3{font-size:19px;font-weight:700;color:#fff;letter-spacing:-.01em;text-shadow:0 1px 12px rgba(15,39,48,.5)}
+@media(max-width:900px){.formats-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.formats-grid{grid-template-columns:1fr 1fr;gap:14px}.fcard{min-height:200px}}
+
+/* ---------- Témoignages vidéo ---------- */
+.vtestims{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.vtcard{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--navy-ink);box-shadow:var(--shadow-md);aspect-ratio:3/4;display:flex;align-items:flex-end;cursor:pointer;isolation:isolate}
+.vtcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.7;z-index:-2;transition:transform .8s var(--ease),opacity .4s}
+.vtcard::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,39,48,.1) 25%,rgba(15,39,48,.9))}
+@media (hover:hover) and (pointer:fine){.vtcard:hover img{transform:scale(1.05);opacity:.6}}
+.vtcard__play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:66px;height:66px;border-radius:50%;background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff;transition:transform .2s var(--ease),background .2s,color .2s}
+@media (hover:hover) and (pointer:fine){.vtcard:hover .vtcard__play{transform:translate(-50%,-50%) scale(1.08);background:var(--yellow);color:var(--navy-ink);border-color:var(--yellow)}}
+.vtcard__play svg{width:24px;height:24px;margin-left:3px}
+.vtcard__top{position:absolute;top:18px;left:18px;z-index:2;font-size:20px;font-weight:800;letter-spacing:.01em;color:#fff;text-shadow:0 1px 10px rgba(15,39,48,.5)}
+.vtcard__body{position:relative;z-index:2;padding:24px;color:#fff;width:100%}
+.vtcard__type{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:rgba(255,255,255,.85);margin-bottom:5px}
+.vtcard__type svg{width:14px;height:14px;color:var(--yellow)}
+.vtcard__pax{font-size:13px;color:rgba(255,255,255,.68);font-weight:500}
+.vtcard__quote{font-size:14.5px;line-height:1.5;color:#fff;margin-top:12px;padding-top:14px;border-top:1px solid rgba(255,255,255,.18)}
+@media(max-width:820px){.vtestims{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.vtestims{grid-template-columns:1fr}.vtcard{aspect-ratio:4/3}}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:60em;margin:0 auto}
+.faq details{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r-md);margin-bottom:12px;overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:22px 26px;font-size:17.5px;font-weight:600;color:var(--navy);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pl{color:var(--yellow-deep);flex:none;display:inline-flex;transition:transform .22s var(--ease)}
+.faq summary .pl svg{width:20px;height:20px}
+.faq details[open] summary .pl{transform:rotate(45deg)}
+.faq .ans{padding:0 26px 24px;color:var(--fg-2);font-size:15.5px;line-height:1.65}
+.faq .ans b{color:var(--navy);font-weight:600}
+.faq .ans a{color:var(--yellow-deep);font-weight:600;border-bottom:1px solid currentColor}
+
+/* ---------- Liens latéraux (Événements / Soirées) ---------- */
+.sideways{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.sway{position:relative;border-radius:var(--r-lg);overflow:hidden;min-height:170px;display:flex;align-items:center;background:var(--navy-ink);text-decoration:none;isolation:isolate}
+.sway img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;z-index:-2;transition:transform .8s var(--ease)}
+.sway::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(15,39,48,.85),rgba(15,39,48,.35))}
+@media (hover:hover) and (pointer:fine){.sway:hover img{transform:scale(1.05)}}
+.sway__body{padding:28px 32px;color:#fff}
+.sway__k{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:7px}
+.sway__body h3{font-size:24px;font-weight:700;color:#fff;letter-spacing:-.01em;display:inline-flex;align-items:center;gap:10px}
+.sway__body h3 svg{width:20px;height:20px;transition:transform .2s var(--ease)}
+@media (hover:hover) and (pointer:fine){.sway:hover h3 svg{transform:translateX(4px)}}
+.sway__body p{font-size:14px;color:rgba(255,255,255,.8);margin-top:6px;max-width:24em;line-height:1.5}
+@media(max-width:680px){.sideways{grid-template-columns:1fr}}
