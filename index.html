@@ -84,6 +84,23 @@
 </section>
 
 <!-- ============================================================
+     SOMMAIRE — sous-nav discrète, se cale sous le header au scroll
+     ============================================================ -->
+<nav class="tocnav" aria-label="Sections de la page" id="tocnav">
+  <div class="wrap">
+    <a href="#pourquoi" data-toc="pourquoi">Pourquoi Comet</a>
+    <a href="#formats" data-toc="formats">Vos formats</a>
+    <a href="#experience" data-toc="experience">L'expérience</a>
+    <a href="#cle-en-main" data-toc="cle-en-main">Le clé-en-main</a>
+    <a href="#difference" data-toc="difference">La différence</a>
+    <a href="#table" data-toc="table">La table</a>
+    <a href="#cas-clients" data-toc="cas-clients">Cas clients</a>
+    <a href="#lieux" data-toc="lieux">Nos lieux</a>
+    <a href="#faq" data-toc="faq">FAQ</a>
+  </div>
+</nav>
+
+<!-- ============================================================
      2 · BANDEAU LOGOS — preuve sociale immédiate
      ============================================================ -->
 <div class="logostrip">
@@ -98,7 +115,7 @@
 <!-- ============================================================
      3 · PROPOSITION DE VALEUR DÉVELOPPÉE — le pitch
      ============================================================ -->
-<section class="section section--cream section--tight">
+<section class="section section--cream section--tight" id="pourquoi">
   <div class="wrap">
     <div class="vprop">
       <div class="vprop__lead reveal">
@@ -136,7 +153,7 @@
 <!-- ============================================================
      4 · LES FORMATS DE RÉUNION — sous-use-cases
      ============================================================ -->
-<section class="section section--cream-deep">
+<section class="section section--cream-deep" id="formats">
   <div class="wrap">
     <div class="shead reveal" style="max-width:42em">
       <span class="eyebrow eyebrow--nodash" data-comment-anchor="8f89fc8170-h2">Vos formats</span>
@@ -155,7 +172,7 @@
 <!-- ============================================================
      5 · LE PARCOURS D'UNE JOURNÉE — le module émotionnel
      ============================================================ -->
-<section class="section section--cream">
+<section class="section section--cream" id="experience">
   <div class="wrap">
     <div class="carousel" data-carousel>
       <div class="carousel__head reveal">
@@ -185,7 +202,7 @@
 <!-- ============================================================
      6 · BENEFIT 1 — LE CLÉ-EN-MAIN
      ============================================================ -->
-<section class="section section--cream-deep">
+<section class="section section--cream-deep" id="cle-en-main">
   <div class="wrap ksplit">
     <aside class="ksplit__aside reveal">
       <span class="eyebrow eyebrow--nodash">Le clé-en-main</span>
@@ -226,7 +243,7 @@
 <!-- ============================================================
      7 · BENEFIT 2 — SANS COMET / AVEC COMET ⭐
      ============================================================ -->
-<section class="section section--cream">
+<section class="section section--cream" id="difference">
   <div class="wrap">
     <div class="shead shead--center reveal" style="max-width:34em">
       <span class="eyebrow eyebrow--nodash eyebrow--center">La différence</span>
@@ -271,7 +288,7 @@
 <!-- ============================================================
      8 · LA TABLE DU CHEF — preuve différenciante
      ============================================================ -->
-<section class="section section--navy">
+<section class="section section--navy" id="table">
   <div class="wrap">
     <div class="carousel" data-carousel>
       <div class="carousel__head reveal">
@@ -297,7 +314,7 @@
 <!-- ============================================================
      9 · CAS CLIENTS & TÉMOIGNAGES — preuve sociale forte
      ============================================================ -->
-<section class="section section--cream">
+<section class="section section--cream" id="cas-clients">
   <div class="wrap" data-comment-anchor="ab12b16a4e-div">
     <div class="shead reveal" style="max-width:40em">
       <span class="eyebrow eyebrow--nodash">Ils ont choisi Comet</span>
@@ -573,6 +590,21 @@
   }
   window.addEventListener('scroll',mctaToggle,{passive:true});
   window.addEventListener('resize',mctaToggle); mctaToggle();
+
+  /* ---------- SOMMAIRE (scroll-spy) ---------- */
+  var tocLinks=[].slice.call(document.querySelectorAll('.tocnav a'));
+  if(tocLinks.length){
+    var tocSpy=function(){
+      var probe=window.scrollY+140, idx=0;
+      tocLinks.forEach(function(a,i){
+        var el=document.getElementById(a.getAttribute('data-toc'));
+        if(el && el.offsetTop<=probe) idx=i;
+      });
+      tocLinks.forEach(function(a,i){a.classList.toggle('is-active',i===idx);});
+    };
+    window.addEventListener('scroll',tocSpy,{passive:true});
+    window.addEventListener('resize',tocSpy); tocSpy();
+  }
 })();
 </script>
 
