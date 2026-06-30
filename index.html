@@ -171,9 +171,9 @@
 <section class="section section--cream-deep" id="cle-en-main">
   <div class="wrap ksplit">
     <aside class="ksplit__aside reveal">
-      <span class="eyebrow eyebrow--nodash">Le clé-en-main</span>
-      <h2>Vous arrivez.<br><span class="acc">Tout est prêt.</span></h2>
-      <p class="lede">Du choix du lieu à l'assistance sur site, tout est compris dans votre journée.</p>
+      <span class="eyebrow eyebrow--nodash">Comet, le clé-en-main</span>
+      <h2>Bien plus qu'une réunion, <br><span class="acc">une expérience</span></h2>
+      <p class="lede">Vous arrivez, tout est prêt. Du choix du lieu à l'assistance sur site, tout est compris dans votre journée.</p>
       <div class="ksplit__count"><b>6</b><span>prestations incluses</span></div>
       <a href="#devis" class="btn btn--primary">Mon devis en 2 minutes</a>
     </aside>
@@ -376,7 +376,8 @@
         <summary>Quels formats de réunion peut-on organiser ? <span class="pl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="ans">Tous vos temps forts collectifs : réunion d'équipe, CODIR, kick-off, onboarding, séminaire, journée d'étude, formation, team building, convention. Pour un cocktail ou un afterwork, voir <a href="#">Soirées</a> ; pour un salon ou une conférence grand format, voir <a href="#">Événements</a>.</div>
       </details>
-      <details>
+      <div class="faq__more" id="faqMore" hidden>
+        <details>
         <summary>Suis-je accompagné le jour J ? <span class="pl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="ans">Oui. Une équipe Comet est présente sur site toute la journée : accueil de vos participants, mise en main de la technique, bon déroulé de l'événement. Votre interlocuteur dédié reste votre point de contact unique, du premier brief jusqu'au jour J.</div>
       </details>
@@ -404,6 +405,9 @@
         <summary>Peut-on livrer du matériel à l'avance et le faire stocker ? <span class="pl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="ans">Oui. Prévenez votre interlocuteur et faites livrer vos colis au lieu choisi : nos équipes les réceptionnent, les gardent en sécurité et vous les remettent le jour J dans votre salle.</div>
       </details>
+      </div>
+      <button class="faq__toggle" id="faqToggle" type="button"><span class="pl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span> Voir les 7 autres questions</button>
+
     </div>
   </div>
 </section>
@@ -589,6 +593,12 @@
     };
     window.addEventListener('scroll',tocSpy,{passive:true});
     window.addEventListener('resize',tocSpy); tocSpy();
+  }
+
+  /* ---------- FAQ : voir plus ---------- */
+  var faqToggle=document.getElementById('faqToggle'), faqMore=document.getElementById('faqMore');
+  if(faqToggle&&faqMore){
+    faqToggle.addEventListener('click',function(){ faqMore.hidden=false; faqToggle.remove(); });
   }
 })();
 </script>
