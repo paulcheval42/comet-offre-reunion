@@ -47,6 +47,9 @@ a,button,summary,.btn,input{touch-action:manipulation}
 .faq__toggle .pl{display:inline-flex;color:var(--yellow-deep)}
 .faq__toggle .pl svg{width:18px;height:18px}
 @media (hover:hover) and (pointer:fine){.faq__toggle:hover{transform:translateY(-2px);border-color:rgba(245,172,60,.4);color:var(--yellow-deep)}}
+
+/* ---------- Pourquoi Comet : emphase en gras (non italique) ---------- */
+.vprop__lead p strong{font-weight:700;font-style:normal;color:var(--navy)}
 /* Les couches décoratives ne capturent pas le clic */
 .vhero__scrim,.finale__bg,.finale__scrim{pointer-events:none}
 /* Chiffres alignés, jamais de saut de chasse */
