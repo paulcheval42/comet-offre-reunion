@@ -34,7 +34,7 @@ a,button,summary,.btn,input{touch-action:manipulation}
    Flux en colonnes : 4 colonnes × 6 rangées ; les portraits occupent 2 rangées.
    L'ordre du DOM est colonne par colonne (chaque colonne = 6 rangées) → le bas
    du mur reste parfaitement aligné tout en mélangeant portraits et paysages. */
-.photowall{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(6,200px);grid-auto-flow:column;gap:16px}
+.photowall{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(8,200px);grid-auto-flow:column;gap:16px}
 .photowall figure{margin:0;border-radius:20px;overflow:hidden;background:var(--cream-deep);box-shadow:0 0 0 1px rgba(33,72,86,.06),var(--shadow-sm);transition:box-shadow .3s}
 .photowall .pw--portrait{grid-row:span 2}
 @media (hover:hover) and (pointer:fine){.photowall figure:hover{box-shadow:0 0 0 1px rgba(33,72,86,.06),var(--shadow-lg)}}
@@ -57,9 +57,8 @@ a,button,summary,.btn,input{touch-action:manipulation}
 /* ---------- Pourquoi Comet : emphase en gras (non italique) ---------- */
 .vprop__lead p strong{font-weight:700;font-style:normal;color:var(--navy)}
 
-/* ---------- Cas clients : 5 colonnes (10 références) ---------- */
-.clients{grid-template-columns:repeat(5,1fr)}
-@media(max-width:980px){.clients{grid-template-columns:repeat(2,1fr)}}
+/* ---------- Cas clients : carrousel (10 références) ---------- */
+.carousel__track .client{flex:none;width:280px;max-width:78vw}
 /* Les couches décoratives ne capturent pas le clic */
 .vhero__scrim,.finale__bg,.finale__scrim{pointer-events:none}
 /* Chiffres alignés, jamais de saut de chasse */
