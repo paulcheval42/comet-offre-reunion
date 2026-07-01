@@ -87,12 +87,12 @@ a,button,summary,.btn,input{touch-action:manipulation}
 /* ---------- Bandeau logos ---------- */
 .logostrip{background:var(--cream-soft);border-bottom:1px solid var(--rule)}
 .logostrip .wrap{padding:30px 40px;display:flex;align-items:center;gap:34px;flex-wrap:wrap;justify-content:center}
-.logostrip__lead{font-size:12.5px;font-weight:600;letter-spacing:.04em;color:var(--fg-3);flex:none}
+.logostrip__lead{font-size:14.5px;font-weight:600;letter-spacing:.04em;color:var(--fg-3);flex:none}
 .logostrip__logos{display:flex;align-items:center;gap:14px 40px;flex-wrap:wrap;justify-content:center}
 .logostrip__logos span{font-size:17px;font-weight:800;letter-spacing:.04em;color:var(--navy);opacity:.5;transition:opacity .2s}
-.logostrip__logos img{height:30px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.55;transition:opacity .2s,filter .2s}
+.logostrip__logos img{height:24px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.55;transition:opacity .2s,filter .2s}
 @media (hover:hover) and (pointer:fine){.logostrip__logos span:hover{opacity:.85}.logostrip__logos img:hover{opacity:.9;filter:grayscale(0)}}
-@media(max-width:560px){.logostrip .wrap{padding:24px 18px;gap:18px}.logostrip__logos span{font-size:14px}.logostrip__logos img{height:22px}}
+@media(max-width:560px){.logostrip .wrap{padding:24px 18px;gap:18px}.logostrip__logos span{font-size:14px}.logostrip__logos img{height:19px}}
 
 /* ---------- Proposition de valeur développée (le pitch) ---------- */
 .vprop{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
