@@ -30,16 +30,22 @@ a,button,summary,.btn,input{touch-action:manipulation}
 .tocnav a:focus-visible{outline:2px solid var(--yellow-deep);outline-offset:-2px;border-radius:4px}
 @media(max-width:980px){.tocnav{display:none}}
 
-/* ---------- Mur de photos (masonry, sans titre) ----------
-   Colonnes CSS pour un rythme masonry ; les formes (portrait/paysage/carré)
-   sont forcées via aspect-ratio + object-fit pour varier la composition. */
-.photowall{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+/* ---------- Mur de photos (mosaïque portrait/paysage, sans titre) ----------
+   Flux en colonnes : 4 colonnes × 6 rangées ; les portraits occupent 2 rangées.
+   L'ordre du DOM est colonne par colonne (chaque colonne = 6 rangées) → le bas
+   du mur reste parfaitement aligné tout en mélangeant portraits et paysages. */
+.photowall{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(6,200px);grid-auto-flow:column;gap:16px}
 .photowall figure{margin:0;border-radius:20px;overflow:hidden;background:var(--cream-deep);box-shadow:0 0 0 1px rgba(33,72,86,.06),var(--shadow-sm);transition:box-shadow .3s}
+.photowall .pw--portrait{grid-row:span 2}
 @media (hover:hover) and (pointer:fine){.photowall figure:hover{box-shadow:0 0 0 1px rgba(33,72,86,.06),var(--shadow-lg)}}
-/* Cellules uniformes (4:3) recadrées pour un bas de mur parfaitement aligné */
-.photowall img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .85s var(--ease)}
+.photowall img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .85s var(--ease)}
 @media (hover:hover) and (pointer:fine){.photowall figure:hover img{transform:scale(1.045)}}
-@media(max-width:980px){.photowall{grid-template-columns:repeat(2,1fr)}}
+/* Mobile : 2 colonnes uniformes (4:3), bas aligné */
+@media(max-width:980px){
+  .photowall{grid-template-columns:repeat(2,1fr);grid-template-rows:none;grid-auto-flow:row}
+  .photowall .pw--portrait{grid-row:auto}
+  .photowall img{height:auto;aspect-ratio:4/3}
+}
 
 /* ---------- FAQ : repli « voir plus » ---------- */
 .faq__more[hidden]{display:none}
