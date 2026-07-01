@@ -56,6 +56,10 @@ a,button,summary,.btn,input{touch-action:manipulation}
 
 /* ---------- Pourquoi Comet : emphase en gras (non italique) ---------- */
 .vprop__lead p strong{font-weight:700;font-style:normal;color:var(--navy)}
+
+/* ---------- Cas clients : 5 colonnes (10 références) ---------- */
+.clients{grid-template-columns:repeat(5,1fr)}
+@media(max-width:980px){.clients{grid-template-columns:repeat(2,1fr)}}
 /* Les couches décoratives ne capturent pas le clic */
 .vhero__scrim,.finale__bg,.finale__scrim{pointer-events:none}
 /* Chiffres alignés, jamais de saut de chasse */
